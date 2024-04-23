@@ -1,0 +1,53 @@
+npm init
+yes
+npm install express
+npm install mongoose
+npx create-react-app client /alongside the npm installations.
+open mongodb account
+
+189.178.12.193/32 My IP Address
+connect in mongodb website, get the string
+create App.js in root and add the string
+
+ npm install cors for connecting the diferent ports
+ npm install dotenv
+
+npm install nodemon --save-dev
+in the root package.json:
+"scripts": {
+  "start": "nodemon your_server_file.js"
+}
+
+ Inside the React app's package.json:
+"proxy": "http://localhost:3001",
+
+npm install bcrypt
+npm install react-router-dom
+
+npm install date-fns
+
+
+
+MiComedor App.
+Users register with username, email, password and restaurant.
+Logs in with username password and restaurant. Those 3 need to match to log in.
+The main page shows the current user open tables. 
+-The menu has the options Mis Mesas (which is shown as the main page mentioned), Platillos, Mesas Abiertas, and Mesas Cerradas.
+-The first option in Mis mesas is a container with a field and a button to confirm the new table (understanding table as check/bill in a restaurnat context) for the current user. Then, the open tables of the current user are listed, if existed. 
+-When clicking the field to open a new table, the user can name a new table by typing any letters or numbers directly on it (the table name cannot be the same as other table in the Mesas Abiertas section). Then the data will be post when clicking the button, including the date and time the table was open. 
+-The new table will show up in the list of open tables. Each table there will have its own name registered and 2 options, one to add new dishes and another to close the table.
+-When the option to close is clicked, a container will pop up with the check information, including the name, the dishes added, their prices and the total of the table, as well as the date and time the table was open. It will also include 2 options, one to close the table, and other to close the container without changes. When a table is closed, it will dissapear from Mis Mesas, and will show up in Mesas Cerradas.
+-When the option to add new dishes in a table is clicked, the Platillos section will be open, wich includes as a first option a button to add a new dish, when clicked a form will pop up to gather the data: Name, Precio, Imagen, and Category (With 3 options: Cocina, Bebida y Otros), and a button to Add the new dish, wich should appear in the Platillos section when submmited. 
+-The Platillos section will include an aside section to show the dishes and prices already added to the table selected, as well as the current total of the check.
+-Every dish will include its name, its image, and its price, as well as a button to delete the dish, after confirmation. And they will be grouped by their Category set when the dish was registered. When a dish is selected, it will be added to the aside check of the table, but the data wont be sent untill a confirm button below the check is clicked.
+-The option Mesas Abiertas will show each open table in check format (showing dishes prices and total) of all the users into the same Restaurant (wich was set during users registration). Each table would also show the username of its creator, its date and time of creation.
+-Mesas cerradas would show the tables already closed, from all users of that Restaurant, in check format directly in the body, including the username of its creator,and its date and time of creation. Each table there will also have a single button to Delete it.
+
+
+If time, Another option called Cocina, that shows all open tables with its dishes, and a switch to mark the order as Trabajando o Completado (If a new dish is added to a table, the switch here should change to Trabajando). This action will only change the color of the table container. When the table is closed by the user creator in Mis mesas, it will also disspaear from here.
+
+-Al registrar un restaurant por primera vez, se pide un password de restaurante.
+
+-Al registrarse en un restauran que ya existe, se pedira el código creado
+
+-para logearse, sigue siendo solo el name password and restaurant

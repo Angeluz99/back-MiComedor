@@ -1,0 +1,87 @@
+###
+
+POST http://localhost:3001/api/users/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "testusername5",
+    "email": "testuemail5@example.com",
+    "password": "testpassword5",
+    "restaurantName": "testrestaurant",
+    "restaurantCode": "testcode1"
+}
+
+
+###
+
+
+POST http://localhost:3001/api/users/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "testusername",
+    "password": "testpassword",
+    "restaurantName": "testrestaurant"
+}
+
+
+####
+
+POST http://localhost:3001/api/tables/open
+Content-Type: application/json
+
+{
+  "name": "hmesa1",
+  "userId": "66256596ffe969446f9c3295",
+  "restaurantId": "66036559f08f0d2925b63c86"
+}
+
+####
+GET http://localhost:3001/api/tables/open/661957330b32968ca59676df
+
+
+####
+
+PUT http://localhost:3001/api/tables/close/660cb5623de81207f69c584b
+
+
+###
+
+GET http://localhost:3001/api/tables/restaurant/open/66021e64a704b401bd4bb17b
+
+
+###
+GET http://localhost:3001/api/tables/restaurant/closed/660849d87d4202acd31ff832
+
+###
+
+
+DELETE http://localhost:3001/api/tables/6608511aff855aa445545635
+
+
+
+###
+POST http://localhost:3001/api/dishes
+Content-Type: application/json
+
+{
+  "name": "Lala",
+  "price": 10.01,
+  "image": "https://drive.google.com/file/d/0B8ityTZc6n8qWE54S2hBbGUxX0k/view?usp=sharing&resourcekey=0-bSspO_ruJlbkzJtpqN0hEA",
+  "category": "Cocina",
+  "restaurantId": "66036559f08f0d2925b63c86"
+}
+
+####
+GET http://localhost:3001/api/dishes/restaurant/66036559f08f0d2925b63c86
+
+
+#### 
+PUT http://localhost:3001/api/tables/add-dish/6625c4b7060eaeb200730914
+Content-Type: application/json
+
+{
+  "dishId": "6625d2c110b86427a0cc0d0e"
+}
+
+####

@@ -1,0 +1,6 @@
+registration notification, redirection to log in
+trim field in registration and log in
+
+
+backend allows to open a table when user and rest do not match
+back allows to add dishes to close tables.
