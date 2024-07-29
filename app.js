@@ -20,6 +20,7 @@ mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log('MongoDB connected successfully.'))
     .catch(err => console.error('Failed to connect to MongoDB', err));
 
+
 // Register a new user
 app.post('/api/users/register', async (req, res) => {
   try {
@@ -32,7 +33,7 @@ app.post('/api/users/register', async (req, res) => {
     // Check if the restaurant exists
     let restaurant = await Restaurant.findOne({ name: restaurantName });
 
-    if (restaurant) {
+    if (restaurant) { /*if a restaurant with that name found is true*/
       // If the restaurant exists, check if the code matches
       if (restaurant.code !== restaurantCode) {
         return res.status(400).json({ message: 'El restaurante ya existe. El codigo para unirte a él es incorrecto.' });
@@ -64,9 +65,9 @@ app.post('/api/users/register', async (req, res) => {
       await restaurant.save(); // Save the updated restaurant
     }
 
-    res.status(201).json({ message: 'User registered successfully.', userId: newUser._id, restaurantId: restaurant._id });
+    res.status(201).json({ message: 'Usuario registrado con éxito', userId: newUser._id, restaurantId: restaurant._id });
   } catch (error) {
-    console.error("Error during registration:", error);
+    console.error("Error surante registro", error);
     res.status(500).json({ error: error.message });
   }
 });
@@ -174,6 +175,19 @@ app.get('/api/tables/open/:userId', async (req, res) => {
   }
 });
 
+// Get a specific table by ID
+app.get('/api/tables/:tableId', async (req, res) => {
+  try {
+    const table = await Table.findById(req.params.tableId).populate('dishes');
+    if (!table) {
+      return res.status(404).json({ message: 'Table not found' });
+    }
+    res.status(200).json(table);
+  } catch (error) {
+    console.error('Failed to fetch table:', error);
+    res.status(500).json({ message: 'Error fetching table', error: error.message });
+  }
+});
 
 
 
@@ -182,16 +196,12 @@ app.get('/api/tables/open/:userId', async (req, res) => {
 app.get('/api/tables/restaurant/open/:userId', async (req, res) => {
   try {
     const user = await User.findById(req.params.userId).populate('restaurant');
-    if (!user) {
-      return res.status(404).json({ message: 'User not found.' });
-    }
-    if (!user.restaurant) {
-      return res.status(404).json({ message: 'Restaurant not found.' });
+    if (!user || !user.restaurant) {
+      return res.status(404).json({ message: 'User or restaurant not found.' });
     }
     const tables = await Table.find({ restaurant: user.restaurant._id, isOpen: true })
-                              .populate('user', 'username')  // Populating username of the table creator
-                              .populate('dishes');  // Also populate the dishes to send their details if needed
-
+                              .populate('user', 'username')
+                              .populate('dishes');
     res.status(200).json(tables);
   } catch (error) {
     console.error("Failed to fetch open tables for restaurant:", error);
@@ -225,29 +235,41 @@ app.get('/api/tables/restaurant/closed/:userId', async (req, res) => {
 app.put('/api/tables/close/:tableId', async (req, res) => {
   try {
     const table = await Table.findByIdAndUpdate(req.params.tableId, { isOpen: false, closedAt: new Date() }, { new: true });
-    res.status(200).send('Table closed successfully.');
+    res.status(200).json({ message: 'Table closed successfully.', tableId: req.params.tableId });
   } catch (error) {
     res.status(500).send(error.message);
   }
 });
 
+
+// DELETE multiple tables (bulk delete)
+app.delete('/api/tables/bulk-delete', async (req, res) => {
+  try {
+    const { tableIds } = req.body; // Assume tableIds is an array of table IDs to be deleted
+    await Table.deleteMany({ _id: { $in: tableIds } });
+    res.status(200).json({ message: 'Tables deleted successfully.' });
+  } catch (error) {
+    console.error('Failed to delete tables:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
 
 // DELETE a table by ID
-app.delete('/api/tables/:tableId', async (req, res) => {
-  try {
-    const tableId = req.params.tableId;
-    const table = await Table.findByIdAndDelete(tableId);
+// app.delete('/api/tables/:tableId', async (req, res) => {
+//   try {
+//     const tableId = req.params.tableId;
+//     const table = await Table.findByIdAndDelete(tableId);
+//     if (!table) {
+//       return res.status(404).json({ message: 'Table not found.' });
+//     }
+//     res.status(200).json({ message: 'Table deleted successfully.' });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send(error.message);
+//   }
+// });
 
-    if (!table) {
-      return res.status(404).json({ message: 'Table not found.' });
-    }
 
-    res.status(200).json({ message: 'Table deleted successfully.' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send(error.message);
-  }
-});
 
 
 // Create a new dish

@@ -4,3 +4,7 @@ trim field in registration and log in
 
 backend allows to open a table when user and rest do not match
 back allows to add dishes to close tables.
+
+remove eror message>failed to open new table cuase name already exist.
+
+closing a table gives an error at first. and doesn-t updates MisMesas view automatically. The closed table is closed and sent to Mesas Cerraadas, thoug

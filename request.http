@@ -47,7 +47,7 @@ PUT http://localhost:3001/api/tables/close/660cb5623de81207f69c584b
 
 ###
 
-GET http://localhost:3001/api/tables/restaurant/open/66021e64a704b401bd4bb17b
+GET http://localhost:3001/api/tables/restaurant/open/6618691d3762524138e111b7
 
 
 ###
@@ -65,10 +65,10 @@ POST http://localhost:3001/api/dishes
 Content-Type: application/json
 
 {
-  "name": "Lala",
-  "price": 10.01,
-  "image": "https://drive.google.com/file/d/0B8ityTZc6n8qWE54S2hBbGUxX0k/view?usp=sharing&resourcekey=0-bSspO_ruJlbkzJtpqN0hEA",
-  "category": "Cocina",
+  "name": "Encendedor Bic",
+  "price": 9.50,
+  "image": "https://drive.google.com/file/d/1zlIypMHKuSxkiydspoH7xmrgJUUz7GdJ/view?usp=sharing",
+  "category": "Otros",
   "restaurantId": "66036559f08f0d2925b63c86"
 }
 
@@ -77,11 +77,17 @@ GET http://localhost:3001/api/dishes/restaurant/66036559f08f0d2925b63c86
 
 
 #### 
-PUT http://localhost:3001/api/tables/add-dish/6625c4b7060eaeb200730914
+PUT http://localhost:3001/api/tables/add-dish/662effb3cc40c812d71346a1
 Content-Type: application/json
 
 {
-  "dishId": "6625d2c110b86427a0cc0d0e"
+  "dishId": "66634a07b8556e3b6c5956af"
 }
 
 ####
+DELETE http://localhost:3001/api/tables/bulk-delete
+Content-Type: application/json
+
+{
+    "tableIds": ["662921b3328e4bc50f77ccac", "663d9ce9e0e511d066c4b2dd", "666c5bae6fec7d7a4279d4ae"]
+}

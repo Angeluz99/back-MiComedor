@@ -51,3 +51,17 @@ If time, Another option called Cocina, that shows all open tables with its dishe
 -Al registrarse en un restauran que ya existe, se pedira el código creado
 
 -para logearse, sigue siendo solo el name password and restaurant
+
+
+
+MiComedor App.
+Users register with username, email, password and restaurant.
+Logs in with username password and restaurant. Those 3 need to match to log in.
+The main page shows, as first view, the current user open tables. 
+-The menu has the options Mis Mesas (which is shown as the main page mentioned), Platillos, Mesas Abiertas, and Mesas Cerradas.
+-The first option in Mis mesas is a container with a field and a button to confirm the new table (understanding table as check/bill in a restaurnat context) for the current user. Then, the open tables of the current user are listed, if existed. 
+-When clicking the field to open a new table, the user can name a new table by typing any letters or numbers directly on it (the table name cannot be the same as other table in the Mesas Abiertas section). Then the data will be post when clicking the button, including the date and time the table was open. 
+-The new table will show up in the list of open tables. Each table there will have its own name registered, the dishes added with its their prices, and the total.
+-Also each table in Mis Mesas section has a button to close the table.
+-The option Mesas Abiertas will show all open tables from all the users into the same Restaurant (wich was set during users registration). Each table here would also show the username of its creator, its date and time of creation.
+-Mesas cerradas would show the tables already closed, from all users of that Restaurant, including the username of its creator and its date and time of creation. Each table there will also have a single button to Delete it.
