@@ -26,6 +26,9 @@ npm install react-router-dom
 
 npm install date-fns
 
+npm uninstall bcrypt
+npm install bcryptjs
+
 
 
 MiComedor App.
