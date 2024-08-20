@@ -16,7 +16,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// console.log('MongoDB URI:', process.env.MONGODB_URI); 
+console.log('MongoDB URI:', process.env.MONGODB_URI); 
 app.get('/', (req, res) => {
   res.send('Hello, MiComedor!');
 });
@@ -72,7 +72,7 @@ app.post('/api/users/register', async (req, res) => {
 
     res.status(201).json({ message: 'Usuario registrado con éxito', userId: newUser._id, restaurantId: restaurant._id });
   } catch (error) {
-    console.error("Error surante registro", error);
+    console.error("Error durante registro", error);
     res.status(500).json({ error: error.message });
   }
 });
