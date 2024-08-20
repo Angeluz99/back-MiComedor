@@ -16,9 +16,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-console.log('MongoDB URI:', process.env.MONGODB_URI); 
 app.get('/', (req, res) => {
   res.send('Hello, MiComedor!');
+  console.log('MongoDB URI:', process.env.MONGODB_URI); 
+
 });
 
 mongoose.connect(process.env.MONGODB_URI)
